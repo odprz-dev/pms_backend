@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\BR_App\BR_ViewModels.csproj" />
+    <ProjectReference Include="..\DB_ApplicationContext\DB_ApplicationContext.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BR_BussinesRules\BR_BussinesRules.csproj" />
     <ProjectReference Include="..\DB_ApplicationContext\DB_ApplicationContext.csproj" />
   </ItemGroup>
 

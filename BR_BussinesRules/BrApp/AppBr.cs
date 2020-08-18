@@ -10,22 +10,26 @@ namespace BR_BussinesRules.BrApp
 {
     public class AppBr: DbContextApplication
     {
+        /// <summary>
+        /// Retorna un listado de usuarios
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<UserViewModel> GetUsers()
         {
-            return Db.User
+            return Db.Users
                 .ToList()
                 .ConvertAll(e=> (UserViewModel)e);
         }
 
         public UserViewModel GetUserById(string id)
         {
-            return Db.User.Find(id);
+            return Db.Users.Find(id);
         }
 
         public UserViewModel PostUser(UserViewModel model)
         {
-            var entityUser = (UserViewModel)model;
-            Db.User.Add(entityUser);
+            var entityUser = (Users)model;
+            Db.Users.Add(entityUser);
             Db.SaveChanges();
 
             return entityUser;
@@ -34,7 +38,7 @@ namespace BR_BussinesRules.BrApp
 
         public UserViewModel PutUser(string id, UserViewModel model)
         {
-            var entityUser = Db.User.Find(id);
+            var entityUser = Db.Users.Find(id);
             if (entityUser == null)
             {
                 return null;
@@ -47,7 +51,7 @@ namespace BR_BussinesRules.BrApp
             entityUser.TimeStamp = model.TimeStamp;
 
 
-            Db.User.Add(entityUser);
+            Db.Users.Add(entityUser);
             Db.SaveChanges();
 
             return entityUser;
@@ -56,13 +60,13 @@ namespace BR_BussinesRules.BrApp
 
         public UserViewModel DeleteUser(string id)
         {
-            var entityUser = Db.User.Find(id);
+            var entityUser = Db.Users.Find(id);
             if (entityUser == null)
             {
                 return null;
             }
 
-            Db.User.Remove(entityUser);
+            Db.Users.Remove(entityUser);
             Db.SaveChanges();
 
             return entityUser;

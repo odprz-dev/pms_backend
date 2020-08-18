@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace DB_ApplicationContext.Models
 {
-    public partial class User
+    public partial class Users
     {
         public string Pk_IdUser { get; set; }
         public string UserName { get; set; }

@@ -16,7 +16,7 @@ namespace DB_ApplicationContext.Models
         }
 
         public virtual DbSet<Sexo> Sexo { get; set; }
-        public virtual DbSet<User> User { get; set; }
+        public virtual DbSet<Users> Users { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
@@ -37,7 +37,7 @@ namespace DB_ApplicationContext.Models
                     .HasMaxLength(50);
             });
 
-            modelBuilder.Entity<User>(entity =>
+            modelBuilder.Entity<Users>(entity =>
             {
                 entity.HasKey(e => e.Pk_IdUser)
                     .HasName("PK_IdUser.Users");

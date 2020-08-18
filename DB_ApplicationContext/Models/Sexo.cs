@@ -7,12 +7,12 @@ namespace DB_ApplicationContext.Models
     {
         public Sexo()
         {
-            Users = new HashSet<User>();
+            Users = new HashSet<Users>();
         }
 
         public int Pk_IdSexo { get; set; }
         public string Descripcion { get; set; }
 
-        public virtual ICollection<User> Users { get; set; }
+        public virtual ICollection<Users> Users { get; set; }
     }
 }

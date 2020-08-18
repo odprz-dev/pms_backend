@@ -9,7 +9,7 @@ namespace BR_App.AppViewModels
     public class UserViewModel
     {
 
-        public static implicit operator UserViewModel(User entity)
+        public static implicit operator UserViewModel(Users entity)
         {
             return new UserViewModel
             {
@@ -23,9 +23,9 @@ namespace BR_App.AppViewModels
             };
         }
 
-        public static implicit operator User(UserViewModel model)
+        public static implicit operator Users(UserViewModel model)
         {
-            return new User
+            return new Users
             {
                 Fk_IdSexo = model.FkIdSexo,
                 UserName = model.UserName,
