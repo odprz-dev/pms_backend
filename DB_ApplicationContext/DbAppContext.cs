@@ -42,11 +42,21 @@ namespace DB_ApplicationContext.Models
                 entity.HasKey(e => e.Pk_IdUser)
                     .HasName("PK_IdUser.Users");
 
+                entity.HasIndex(e => e.Email)
+                    .HasName("UC_User_Email")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.UserName)
+                    .HasName("UC_User_Name")
+                    .IsUnique();
+
                 entity.Property(e => e.Pk_IdUser)
                     .HasMaxLength(128)
                     .HasDefaultValueSql("(newid())");
 
-                entity.Property(e => e.Email).HasMaxLength(256);
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(256);
 
                 entity.Property(e => e.TimeStamp)
                     .HasColumnType("datetime")
