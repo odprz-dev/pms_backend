@@ -26,6 +26,15 @@ namespace WA_Pms_Odprz
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddCors(options =>
+            {
+                options.AddPolicy("All-Sites", policy =>
+                {
+                    policy.AllowAnyOrigin();
+                });
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +44,8 @@ namespace WA_Pms_Odprz
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("All-Sites");
 
             app.UseHttpsRedirection();
 
