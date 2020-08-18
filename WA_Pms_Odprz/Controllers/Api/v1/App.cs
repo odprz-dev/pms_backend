@@ -131,6 +131,20 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
 
             }
         }
-       
+
+        [HttpPost("test")]
+        public ActionResult<TestHash> Test(TestHash test)
+        {
+            try
+            {
+                return Ok(_br.Test(test));
+            }
+            catch (Exception e)
+            {
+                throw e;
+                // TODO: HandleExceptions
+            }
+        }
+
     }
 }
