@@ -18,5 +18,9 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\DB_ApplicationContext\DB_ApplicationContext.csproj" />
+  </ItemGroup>
+
 
 </Project>
