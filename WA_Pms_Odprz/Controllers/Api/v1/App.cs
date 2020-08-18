@@ -76,7 +76,7 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
             catch(Exception e)
             {
                 throw e;
-                // TODO: HandleExceptions
+                // TODO: HandleExceptions DbUpdateException
 
             }
         }
@@ -89,7 +89,7 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
         /// <param name="model"></param>
         /// <returns></returns>
         [HttpPut("Users/{id}")]
-        public ActionResult<UserViewModel>PutUser(string id, UserViewModel model)
+        public ActionResult<UserViewModel>PutUser(string id, UserEditViewModel model)
         {
             try
             {
@@ -129,20 +129,6 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
                 throw e;
                 // TODO: HandleExceptions
 
-            }
-        }
-
-        [HttpPost("test")]
-        public ActionResult<TestHash> Test(TestHash test)
-        {
-            try
-            {
-                return Ok(_br.Test(test));
-            }
-            catch (Exception e)
-            {
-                throw e;
-                // TODO: HandleExceptions
             }
         }
 

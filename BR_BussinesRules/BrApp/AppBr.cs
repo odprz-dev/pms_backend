@@ -2,6 +2,7 @@
 using BR_App.AppViewModels;
 using BR_BussinesRules.DBContextAccess;
 using DB_ApplicationContext.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -40,7 +41,7 @@ namespace BR_BussinesRules.BrApp
         }
 
 
-        public UserViewModel PutUser(string id, UserViewModel model)
+        public UserViewModel PutUser(string id, UserEditViewModel model)
         {
             var entityUser = Db.Users.Find(id);
             if (entityUser == null)
@@ -49,13 +50,22 @@ namespace BR_BussinesRules.BrApp
             }
             entityUser.UserName = model.UserName;
             entityUser.Email = model.Email;
-            entityUser.CT_Status = model.CtStatus;
             entityUser.Fk_IdSexo = model.FkIdSexo;
-            entityUser.PasswordHash = model.PasswordHash;
-            entityUser.TimeStamp = model.TimeStamp;
 
+            // Comprobando que el password anterior coincida
+            var (Verifi, _) = PassHasher.Review(entityUser.PasswordHash, model.LastPassword);
 
-            Db.Users.Add(entityUser);
+            if(!Verifi) {
+                // TODO: handle ValidationException 
+                var e = new Exception("El password anterior no coincide");
+                throw e;
+            }
+
+            string passwordHashed = PassHasher.Hash(model.NewPassword);
+
+            entityUser.PasswordHash = passwordHashed;
+
+            Db.Users.Update(entityUser);
             Db.SaveChanges();
 
             return entityUser;
@@ -70,28 +80,14 @@ namespace BR_BussinesRules.BrApp
                 return null;
             }
 
-            Db.Users.Remove(entityUser);
+            entityUser.CT_Status = false;
+
+            Db.Users.Update(entityUser);
             Db.SaveChanges();
 
             return entityUser;
         }
 
-        public TestHash Test (TestHash test)
-        {
-            var (Verifi, Up) = PassHasher.Review(test.Hash, test.Password);
-
-            test.IsEqual = Verifi;
-            test.NeedUpdt = Up;
-
-            return test;
-        }
     }
 
-    public class TestHash
-    {
-        public string Hash { get; set; }
-        public string Password { get; set; }
-        public bool IsEqual { get; set; }
-        public bool NeedUpdt { get; set; }
-    }
 }
