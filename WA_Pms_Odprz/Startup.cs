@@ -32,6 +32,8 @@ namespace WA_Pms_Odprz
                 options.AddPolicy("All-Sites", policy =>
                 {
                     policy.AllowAnyOrigin();
+                    policy.AllowAnyMethod();
+                    policy.AllowAnyHeader();
                 });
             });
 
