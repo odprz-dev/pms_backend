@@ -41,7 +41,7 @@ namespace BR_App.AppViewModels
         public string PkIdUser { get; set; }
         [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
         [StringLength(25, ErrorMessage = "El nombre de usuario debe tener maximo 25 caracteres.")]
-        [MinLength(5, ErrorMessage ="El nombre de usuario debe tener almenos 5 caracteres")]
+        [MinLength(7, ErrorMessage ="El nombre de usuario debe tener al menos 7 caracteres")]
         public string UserName { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
@@ -52,6 +52,8 @@ namespace BR_App.AppViewModels
         public int FkIdSexo { get; set; }
         [Required(ErrorMessage = "El password es obligatorio")]
         [MinLength(10, ErrorMessage = "El password debe tener almenos 10 caracteres alfanumericos.")]
+        [RegularExpression("^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{10,}$",
+            ErrorMessage = "El nuevo password debe tener al menos un caracter en mayuscula un caracter en minuscula un caracter especial(simbolo) y un numero")]
         public string Password { get; set; }
         #endregion
     }
@@ -76,6 +78,8 @@ namespace BR_App.AppViewModels
 
         [Required(ErrorMessage = "El nuevo password es obligatorio")]
         [MinLength(10,ErrorMessage = "El password debe tener almenos 10 caracteres alfanumericos.")]
+        [RegularExpression("^(?=.*?[A-Z])(?=(.*[a-z]){1,})(?=(.*[\\d]){1,})(?=(.*[\\W]){1,})(?!.*\\s).{10,}$",
+            ErrorMessage = "El nuevo password debe tener al menos un caracter en mayuscula, un caracter en minuscula, un caracter especial (simbolo) y un numero")]
         public string NewPassword { get; set; }
 
 
