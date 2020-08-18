@@ -16,6 +16,7 @@ namespace BR_App.AppViewModels
                 PkIdUser = entity.Pk_IdUser,
                 UserName = entity.UserName,
                 Email = entity.Email,
+                PasswordHash = entity.PasswordHash,
                 TimeStamp = entity.TimeStamp,
                 CtStatus = entity.CT_Status,
                 FkIdSexo = entity.Fk_IdSexo

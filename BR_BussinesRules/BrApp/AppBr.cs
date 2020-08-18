@@ -1,10 +1,9 @@
-﻿using BR_App.AppViewModels;
+﻿using ARQ_App.SecurityTools;
+using BR_App.AppViewModels;
 using BR_BussinesRules.DBContextAccess;
 using DB_ApplicationContext.Models;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace BR_BussinesRules.BrApp
 {
@@ -29,6 +28,11 @@ namespace BR_BussinesRules.BrApp
         public UserViewModel PostUser(UserViewModel model)
         {
             var entityUser = (Users)model;
+
+            string passwordHashed = PassHasher.Hash(model.Password);
+
+            entityUser.PasswordHash = passwordHashed;
+            
             Db.Users.Add(entityUser);
             Db.SaveChanges();
 
@@ -71,5 +75,23 @@ namespace BR_BussinesRules.BrApp
 
             return entityUser;
         }
+
+        public TestHash Test (TestHash test)
+        {
+            var (Verifi, Up) = PassHasher.Review(test.Hash, test.Password);
+
+            test.IsEqual = Verifi;
+            test.NeedUpdt = Up;
+
+            return test;
+        }
+    }
+
+    public class TestHash
+    {
+        public string Hash { get; set; }
+        public string Password { get; set; }
+        public bool IsEqual { get; set; }
+        public bool NeedUpdt { get; set; }
     }
 }
