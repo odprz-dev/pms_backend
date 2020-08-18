@@ -40,7 +40,8 @@ namespace BR_App.AppViewModels
         #region attributes
         public string PkIdUser { get; set; }
         [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
-        [StringLength(25, ErrorMessage = "El nombre de usuario debe tener entre 5 y 25 caracteres.", MinimumLength = 5)]
+        [StringLength(25, ErrorMessage = "El nombre de usuario debe tener maximo 25 caracteres.")]
+        [MinLength(5, ErrorMessage ="El nombre de usuario debe tener almenos 5 caracteres")]
         public string UserName { get; set; }
         public string Email { get; set; }
         public string PasswordHash { get; set; }
@@ -50,6 +51,7 @@ namespace BR_App.AppViewModels
         [Required(ErrorMessage = "El sexo del usuario es obligatorio")]
         public int FkIdSexo { get; set; }
         [Required(ErrorMessage = "El password es obligatorio")]
+        [MinLength(10, ErrorMessage = "El password debe tener almenos 10 caracteres alfanumericos.")]
         public string Password { get; set; }
         #endregion
     }
@@ -59,7 +61,8 @@ namespace BR_App.AppViewModels
         [Required(ErrorMessage = "El Identificador de usuario es obligatorio")]
         public string PkIdUser { get; set; }
         [Required(ErrorMessage = "El nombre de usuario es obligatorio")]
-        [StringLength(25, ErrorMessage = "El nombre de usuario debe tener entre 5 y 25 caracteres.", MinimumLength = 5)]
+        [StringLength(25, ErrorMessage = "El nombre de usuario debe tener maximo 25 caracteres.")]
+        [MinLength(5, ErrorMessage = "El nombre de usuario debe tener almenos 5 caracteres")]
         public string UserName { get; set; }
 
         [Required(ErrorMessage = "El email es obligatorio")]
@@ -72,6 +75,7 @@ namespace BR_App.AppViewModels
         public string LastPassword { get; set; }
 
         [Required(ErrorMessage = "El nuevo password es obligatorio")]
+        [MinLength(10,ErrorMessage = "El password debe tener almenos 10 caracteres alfanumericos.")]
         public string NewPassword { get; set; }
 
 
