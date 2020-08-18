@@ -48,8 +48,8 @@ namespace BR_App.AppViewModels
         public bool CtStatus { get; set; }
         [Required(ErrorMessage = "El sexo del usuario es obligatorio")]
         public int FkIdSexo { get; set; }
-
-        public virtual Sexo Sexo { get; set; }
+        [Required(ErrorMessage = "El password es obligatorio")]
+        public string Password { get; set; }
         #endregion
     }
 }
