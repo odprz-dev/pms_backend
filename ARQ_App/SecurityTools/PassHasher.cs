@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Options;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -10,14 +9,14 @@ namespace ARQ_App.SecurityTools
     /// <summary>
     /// Implementa metodos para hashear y verificar una serie de caracteres
     /// </summary>
-    public class PassHasher 
+    public static class PassHasher 
     {
         private const int Salt = 16;
         private const int Key = 32;
         private const int It = 10000; 
 
-        public PassHasher() { }
-        public string Hash(string pass)
+   
+        public static string Hash(string pass)
         {
             using var algorithm = new Rfc2898DeriveBytes(
                 password: pass,
@@ -37,7 +36,7 @@ namespace ARQ_App.SecurityTools
         /// <param name="hash"></param>
         /// <param name="pass"></param>
         /// <returns></returns>
-        public (bool Verifi, bool Up) Review(string hash, string pass)
+        public static (bool Verifi, bool Up) Review(string hash, string pass)
         {
             var split = hash.Split('.', 3);
 
