@@ -84,4 +84,14 @@ namespace BR_App.AppViewModels
 
 
     }
+
+    public class UserLoginViewModel
+    {
+        
+        public string Usuario { get; set; }
+
+        public string Password { get; set; }
+
+
+    }
 }

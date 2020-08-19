@@ -88,6 +88,28 @@ namespace BR_BussinesRules.BrApp
             return entityUser;
         }
 
+
+        public UserViewModel Login(UserLoginViewModel model)
+        {
+            var entityUser = Db.Users.Where(u => u.UserName == model.Usuario).FirstOrDefault();
+            if (entityUser == null)
+            {
+                return null;
+            }
+           
+
+         
+            var (Verifi, _) = PassHasher.Review(entityUser.PasswordHash, model.Password);
+
+            if (!Verifi)
+            {
+                return null;
+            }
+                        
+            return entityUser;
+
+        }
+
     }
 
 }
