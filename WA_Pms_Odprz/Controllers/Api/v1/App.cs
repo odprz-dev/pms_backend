@@ -19,7 +19,7 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
         private readonly AppBr _br = new AppBr();
         #endregion
 
-        // GET: api/app/Classifications
+        // GET: api/app/Users
         /// <summary>
         /// Retorna un listado de usuarios
         /// </summary>
