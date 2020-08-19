@@ -13,8 +13,11 @@ permite el manejo de excepciones por validación de operaciones.
 La aplicación esta dividida en las siguientes capas
 
 **ARQ_ :** Arquitectura de la aplicación
+
 **BR_:** Reglas de negocio y ViewModels
+
 **DB_:** Capa de datos (Contexto y Modelos)
+
 **WA_:** Capa de aplicación(Presentación) - en esta capa se implementan los endpoints  
 
 Los endpoints que se definieron son los siguientes:
