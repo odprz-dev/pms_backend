@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ARQ_App.ApiControllerTools;
+using ARQ_App.ExceptionManager;
 using BR_App.AppViewModels;
 using BR_BussinesRules.BrApp;
 using Microsoft.AspNetCore.Http;
@@ -11,7 +13,7 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
 {
     [Route("api/v1/[controller]")]
     [ApiController]
-    public class App : ControllerBase
+    public class App : ApiErrorManager
     {
         #region BR Instance
         private readonly AppBr _br = new AppBr();
@@ -28,6 +30,10 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
             try
             {
                 return Ok(_br.GetUsers());
+            }
+            catch (OperationValidationException e)
+            {
+                return BadRequest(e);
             }
             catch (Exception e)
             {
@@ -52,7 +58,11 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
                     return NotFound();
                 return Ok(user);
             }
-            catch(Exception e)
+            catch (OperationValidationException e)
+            {
+                return BadRequest(e);
+            }
+            catch (Exception e)
             {
                 throw e;
                 // TODO: HandleExceptions
@@ -73,7 +83,11 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
             {
                 return Ok(_br.PostUser(model));
             }
-            catch(Exception e)
+            catch (OperationValidationException e)
+            {
+                return BadRequest(e);
+            }
+            catch (Exception e)
             {
                 throw e;
                 // TODO: HandleExceptions DbUpdateException
@@ -102,7 +116,11 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
                     return result;
                 return NotFound();
             }
-            catch(Exception e)
+            catch (OperationValidationException e)
+            {
+                return BadRequest(e);
+            }
+            catch (Exception e)
             {
                 throw e;
             }
@@ -124,7 +142,11 @@ namespace WA_Pms_Odprz.Controllers.Api.v1
                     return NotFound();
                 return Ok(result);
             }
-            catch(Exception e)
+            catch (OperationValidationException e)
+            {
+                return BadRequest(e);
+            }
+            catch (Exception e)
             {
                 throw e;
                 // TODO: HandleExceptions

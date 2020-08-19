@@ -1,4 +1,5 @@
-﻿using ARQ_App.SecurityTools;
+﻿using ARQ_App.ExceptionManager;
+using ARQ_App.SecurityTools;
 using BR_App.AppViewModels;
 using BR_BussinesRules.DBContextAccess;
 using DB_ApplicationContext.Models;
@@ -57,8 +58,8 @@ namespace BR_BussinesRules.BrApp
 
             if(!Verifi) {
                 // TODO: handle ValidationException 
-                var e = new Exception("El password anterior no coincide");
-                throw e;
+                throw new OperationValidationException(2,"El password anterior no coincide");
+                
             }
 
             string passwordHashed = PassHasher.Hash(model.NewPassword);
